@@ -16,14 +16,11 @@
  * limitations under the License.
  */
  
-import java.net.*
-import java.io.*
 
 def remote_exists(url){
     try {
       HttpURLConnection.setFollowRedirects(false);
-      HttpURLConnection connection =
-         (HttpURLConnection) new URL(url).openConnection();
+      HttpURLConnection connection = new URL(url).openConnection();
       connection.setRequestMethod("HEAD");
       return (connection.getResponseCode() == HttpURLConnection.HTTP_OK);
     }
@@ -44,7 +41,7 @@ process PROCESS_INPUT {
   output:
   tuple val(meta), val(output_vcf), val("${output_vcf}.${index_type}")
   
-  shell:
+  script:
   file_type = meta.file_type
   output_vcf = file_type == "remote" ? meta.genome_temp_dir + "/" + file(vcf).getName() : vcf
   if(file_type == "remote") {

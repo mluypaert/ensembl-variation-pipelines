@@ -18,10 +18,8 @@
 // run VEP annotation
 //
 
-repo_dir = params.repo_dir
-
 include { INDEX_VCF } from "../../modules/local/index_vcf.nf"
-include { vep } from "${repo_dir}/ensembl-vep/nextflow/workflows/run_vep.nf"
+include { vep } from "${params.repo_dir}/ensembl-vep/nextflow/workflows/run_vep.nf"
 
 workflow RUN_VEP {
   take:

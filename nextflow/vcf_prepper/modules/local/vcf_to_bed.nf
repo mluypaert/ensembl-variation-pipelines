@@ -24,7 +24,7 @@ process VCF_TO_BED {
   output:
   tuple val(meta), path(output_file)
   
-  shell:
+  script:
   output_file = vcf.getName().replace(".vcf.gz", ".bed")
   bed_fields = params.bed_fields
   structural_variant = params.structural_variant ? "--structural-variant" : ""
