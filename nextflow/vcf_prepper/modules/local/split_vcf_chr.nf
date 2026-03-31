@@ -27,12 +27,12 @@ process SPLIT_VCF_CHR {
   tuple val(meta), path("split.*.vcf.gz")
 
   script:
-  '''
-  chr_file=!{chr_file}
-  chr=$(basename ${chr_file/.chrom/})
+  """
+  chr_file=${chr_file}
+  chr=\$(basename \${chr_file/.chrom/})
   
-  bcftools view -Oz -o split.${chr}.vcf.gz !{vcf} "${chr}"
+  bcftools view -Oz -o split.\${chr}.vcf.gz ${vcf} "\${chr}"
   
   rm ${chr_file}
-  '''
+  """
 }

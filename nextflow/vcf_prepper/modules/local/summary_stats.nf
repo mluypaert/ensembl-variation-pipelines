@@ -43,14 +43,14 @@ process SUMMARY_STATS {
     population_data_file = ""
   }
 
-  '''
+  """
   summary_stats.py \
-    !{species} \
-    !{assembly} \
-    !{vcf} \
-    -O !{output_file} \
-    !{population_data_file}
+    ${species} \
+    ${assembly} \
+    ${vcf} \
+    -O ${output_file} \
+    ${population_data_file}
   
-  bcftools index !{flag_index} !{output_file}
-  '''
+  bcftools index ${flag_index} ${output_file}
+  """
 }
